@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le mot{{ mot.mot }}{% endblock %}
+
+{% block body %}
+    <h1>Modifier le mot "{{ mot.mot }}"</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.mot) }}
+
+    {{ form_row(form.Valider) }}
+
+    {{ form_end(form) }}
+
+    <a href="{{ path('mot_index') }}">Retour à la liste des mots</a>
+{% endblock %}

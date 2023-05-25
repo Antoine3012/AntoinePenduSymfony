@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jeu du pendu{% endblock %}
+
+{% block body %}
+    <h1>Jeu du pendu</h1>
+
+    <p>Lettres déjà devinées : {{ lettresDevinees|join(' ') }}</p>
+
+    <form action="{{ path('jeu_deviner_lettre') }}" method="post">
+        <label for="lettre">Lettre :</label>
+        <input type="text" id="lettre" name="lettre" maxlength="1" required>
+        <input type="hidden" id="mot" name="mot" value="{{mot}}">
+        <input type="hidden" id="motatrou" name="motatrou" value="{{lettresDevinees|join}}">
+        <input type="hidden" id="erreur" name="erreur" value="{{erreur}}">
+        <button type="submit">Deviner</button>
+    </form>
+
+    <p>
+        {% for lettreDansMot in mot|split('') %}
+            {% if lettreDansMot in lettresDevinees %}
+                {{ lettreDansMot }}
+            {% else %}
+                _
+            {% endif %}
+        {% endfor %}
+    </p>
+
+    {% if erreur == 0 %}
+        <p>0 Erreur</p>
+    {% elseif erreur == 1 %}
+        <p>1 Erreur</p>
+    {% elseif erreur == 2 %}
+        <p>2 Erreur</p>
+    {% elseif erreur == 3 %}
+        <p>3 Erreur</p>
+    {% elseif erreur == 4 %}
+        <p>4 Erreur</p>
+    {% elseif erreur == 5 %}
+        <p>5 Erreur</p>
+    {% elseif erreur == 6 %}
+        <p>6 Erreur</p>
+    {% endif %}
+
+{% endblock %}

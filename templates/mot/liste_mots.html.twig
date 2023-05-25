@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des mots{% endblock %}
+
+{% block body %}
+    <h1>Liste des mots</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Libellé</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mot in mots %}
+                <tr>
+                    <td>{{ mot.id }}</td>
+                    <td>{{ mot.mot }}</td>
+                    <td>
+                        <a href="{{ path('mot_modifier', {'id': mot.id}) }}">Modifier</a>
+                        {# <a href="{{ path('mot_delete', {'id': mot.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce mot ?')">Supprimer</a> #}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun mot trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('mot_new') }}">Ajouter un nouveau mot</a>
+{% endblock %}
